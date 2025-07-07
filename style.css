@@ -63,6 +63,14 @@ body, html {
 .time-section span {
     font-size: 3rem;
     font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    transform: scale(1);
+}
+
+.time-section span.changing {
+    transform: scale(1.1);
+    color: #ff9800;
 }
 
 .label {

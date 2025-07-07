@@ -1,6 +1,5 @@
-// Set the date we're counting down to (7 days from now)
-const now = new Date();
-const countDownDate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+// Set a fixed target date (5 days from when this was created)
+const countDownDate = new Date('2025-07-12T00:00:00').getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
@@ -11,10 +10,23 @@ function updateCountdown() {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById('days').textContent = days.toString().padStart(2, '0');
-    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    // Function to update with animation
+    function updateWithAnimation(elementId, newValue) {
+        const element = document.getElementById(elementId);
+        const currentValue = element.textContent;
+        if (currentValue !== newValue.toString().padStart(2, '0')) {
+            element.classList.add('changing');
+            element.textContent = newValue.toString().padStart(2, '0');
+            setTimeout(() => {
+                element.classList.remove('changing');
+            }, 300);
+        }
+    }
+
+    updateWithAnimation('days', days);
+    updateWithAnimation('hours', hours);
+    updateWithAnimation('minutes', minutes);
+    updateWithAnimation('seconds', seconds);
 
     if (distance < 0) {
         document.getElementById('countdown').innerHTML = "We're live!";
