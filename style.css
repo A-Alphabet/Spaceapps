@@ -1,0 +1,94 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+#bgVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.overlay h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.overlay h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5em;
+}
+
+#countdown {
+    display: flex;
+    gap: 1.5em;
+    margin-bottom: 2em;
+    background: rgba(0,0,0,0.5);
+    border: 2px solid #ff9800;
+    border-radius: 10px;
+    padding: 1em 2em;
+}
+
+.time-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-section span {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 1rem;
+    margin-top: 0.2em;
+}
+
+#subscribe-form, #subscribe-form input[type="email"], #subscribe-form button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .overlay h1 {
+        font-size: 2.2rem;
+    }
+    .overlay h2 {
+        font-size: 1.2rem;
+    }
+    #countdown {
+        flex-direction: column;
+        gap: 0.5em;
+        padding: 1em;
+    }
+    #subscribe-form {
+        flex-direction: column;
+        gap: 0.5em;
+        padding: 1em;
+    }
+} 
