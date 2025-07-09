@@ -305,6 +305,17 @@
         </section>
     </div>
     <!-- End of main-container -->
+    <!-- SyncSpace Maintenance Modal -->
+    <div id="syncspace-modal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <h2>Website Suspended for Maintenance</h2>
+        <p>SyncSpace is currently suspended for maintenance.<br>You may continue anyway, but the website may not be available.</p>
+        <div style="display:flex; gap:1rem; justify-content:center; margin-top:1.5rem;">
+          <button id="syncspace-modal-continue" class="btn btn-primary">Continue Anyway</button>
+          <button id="syncspace-modal-cancel" class="btn btn-outline" style="background:transparent;color:var(--primary);border:1px solid var(--primary);" onmouseover="this.style.background='var(--primary)';this.style.color='#fff';" onmouseout="this.style.background='transparent';this.style.color='var(--primary)';">Close</button>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html> 

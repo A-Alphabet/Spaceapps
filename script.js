@@ -191,58 +191,42 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Dark mode toggle button NOT found');
     }
 
-    // SyncSpace Maintenance Modal logic
+    // SyncSpace Maintenance Modal Logic
     const syncspaceBtn = document.getElementById('syncspace-unavailable-btn');
-    const syncspaceModal = document.getElementById('syncspace-modal');
-    if (syncspaceBtn && syncspaceModal) {
-        const closeBtn = syncspaceModal.querySelector('.modal-close');
-        function openSyncspaceModal() {
-            syncspaceModal.classList.add('active');
-            syncspaceModal.setAttribute('aria-hidden', 'false');
-            // Trap focus
-            const focusable = syncspaceModal.querySelectorAll('a, button:not([disabled]), [tabindex]:not([tabindex="-1"])');
-            if (focusable.length) focusable[0].focus();
-            document.body.style.overflow = 'hidden';
-        }
-        function closeSyncspaceModal() {
-            syncspaceModal.classList.remove('active');
-            syncspaceModal.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-            syncspaceBtn.focus();
-        }
-        syncspaceBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            openSyncspaceModal();
-        });
-        closeBtn.addEventListener('click', closeSyncspaceModal);
-        syncspaceModal.addEventListener('mousedown', function(e) {
-            if (e.target === syncspaceModal) closeSyncspaceModal();
-        });
-        window.addEventListener('keydown', function(e) {
-            if (syncspaceModal.classList.contains('active') && e.key === 'Escape') {
-                closeSyncspaceModal();
-            }
-        });
-        syncspaceModal.addEventListener('keydown', function(e) {
-            if (!syncspaceModal.classList.contains('active')) return;
-            if (e.key !== 'Tab') return;
-            const focusable = syncspaceModal.querySelectorAll('a, button:not([disabled]), [tabindex]:not([tabindex="-1"])');
-            if (!focusable.length) return;
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-            if (e.shiftKey) {
-                if (document.activeElement === first) {
-                    e.preventDefault();
-                    last.focus();
-                }
-            } else {
-                if (document.activeElement === last) {
-                    e.preventDefault();
-                    first.focus();
-                }
-            }
-        });
+    const modal = document.getElementById('syncspace-modal');
+    const closeBtn = document.getElementById('syncspace-modal-close');
+    const cancelBtn = document.getElementById('syncspace-modal-cancel');
+    const continueBtn = document.getElementById('syncspace-modal-continue');
+
+    if (syncspaceBtn && modal) {
+      syncspaceBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.style.display = 'flex';
+      });
     }
+    if (closeBtn) {
+      closeBtn.onclick = function() {
+        modal.style.display = 'none';
+      };
+    }
+    if (cancelBtn) {
+      cancelBtn.onclick = function() {
+        modal.style.display = 'none';
+      };
+    }
+    if (continueBtn) {
+      continueBtn.onclick = function() {
+        modal.style.display = 'none';
+        // Open the actual SyncSpace link
+        window.open('https://syncspace.spaceapp.rf.gd/', '_blank');
+      };
+    }
+    // Optional: Close modal when clicking outside content
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
 
     // Smooth scroll for Upcoming Projects button in hero section
     const upcomingBtn = document.querySelector('a[href="#upcoming-projects"]');
@@ -268,6 +252,21 @@ document.addEventListener('DOMContentLoaded', function() {
             cashspaceDetails.style.display = 'block';
             cashspaceDetails.scrollIntoView({ behavior: 'smooth' });
         });
+    }
+
+    // Fix: Reset CashSpace card/details when navigating to Upcoming Projects
+    const upcomingProjectsSection = document.getElementById('upcoming-projects');
+    if (upcomingProjectsSection) {
+      const observer = new MutationObserver(() => {
+        const isActive = upcomingProjectsSection.classList.contains('active');
+        const cashspaceCard = document.getElementById('cashspace-card');
+        const cashspaceDetails = document.getElementById('cashspace-details');
+        if (isActive && cashspaceCard && cashspaceDetails) {
+          cashspaceCard.style.display = '';
+          cashspaceDetails.style.display = 'none';
+        }
+      });
+      observer.observe(upcomingProjectsSection, { attributes: true, attributeFilter: ['class'] });
     }
 
     const hamburger = document.querySelector('.nav-hamburger');
