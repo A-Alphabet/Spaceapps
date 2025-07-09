@@ -10,16 +10,53 @@
     <meta name="format-detection" content="telephone=no">
     <title>Space Apps - Coming Soon</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg width='32' height='32' viewBox='0 0 40 40' fill='none' stroke='%23ff9800' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='20' cy='20' r='16' stroke='%23ff9800' stroke-width='2.5' fill='none'/><ellipse cx='20' cy='20' rx='13' ry='4' stroke='%23ff9800' stroke-width='2'/><circle cx='27' cy='15' r='1.5' fill='%23ff9800'/><circle cx='15' cy='25' r='1.2' fill='%23ff9800'/></svg>">
 </head>
 <body>
     <video autoplay muted loop id="bgVideo">
         <source src="https://cdn.pixabay.com/video/2016/03/05/2381-157901992_large.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
+    
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="themeToggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
     <div class="overlay">
-        <h1>Space Apps</h1>
+        <!-- App Icon and Title -->
+        <div class="app-header">
+            <div class="app-icon">
+                <svg width="48" height="48" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="2.5" fill="none"/>
+                    <ellipse cx="20" cy="20" rx="13" ry="4" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="27" cy="15" r="1.5" fill="currentColor"/>
+                    <circle cx="15" cy="25" r="1.2" fill="currentColor"/>
+                </svg>
+            </div>
+            <h1>Space Apps</h1>
+        </div>
         <h2>Our website is coming soon</h2>
+        
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="progressPercent">0%</span> Complete
+            </div>
+        </div>
+        
         <div id="countdown">
             <div class="time-section">
                 <span id="days">00</span>
@@ -39,6 +76,23 @@
             </div>
         </div>
     </div>
+    
+    <!-- Loading Animation -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-spinner">
+            <div class="app-icon-loading">
+                <svg width="64" height="64" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="2.5" fill="none"/>
+                    <ellipse cx="20" cy="20" rx="13" ry="4" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="27" cy="15" r="1.5" fill="currentColor"/>
+                    <circle cx="15" cy="25" r="1.2" fill="currentColor"/>
+                </svg>
+            </div>
+            <p>Loading Space Apps...</p>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 
